@@ -63,8 +63,67 @@ const createSubscriber = async (req, res) => {
     }
 };
 
+
+const updateSubscriber = async (req, res) => {
+    //#swagger.tags=['hello world]
+
+    const subscriberId = new ObjectId(req.params.id);
+    try {
+         const newSubscriber = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      phone: req.body.phone,
+      subscriptionDate: req.body.subscriptionDate,
+      status: req.body.status,
+      plan: req.body.plan,
+      country: req.body.country,
+      preferences: {
+        newsletter: req.body.preferences.newsletter,
+        notifications: req.body.preferences.notifications,
+        marketing: req.body.preferences.marketing 
+    }}
+
+    const result = await mongodb.getDatabase().db().collection('subscribers').updateOne({_id: subscriberId}, { $set: newSubscriber});
+
+    if (result.matchedCount === 0) {
+        res.status(404).json({ message: 'subscriber not found'});
+
+    }
+
+    if (result.modifiedCount > 0) {
+        res.status(200).json({ message: 'subscriber updated'})
+    }else{
+        res.status(500).json({ message: 'failed to update subscriber'});
+    }
+}catch(err) {
+    res.status(500).json({ error: err.message});
+}}
+
+
+const deleteSubscriber = async (req, res) => {
+    //#swagger.tags=['hello world]
+    const subscriberId = new ObjectId(req.params.id);
+    try{
+        const result = await mongodb.getDatabase().db().collection('subscribers').deleteOne({ _id: subscriberId});
+
+        if (result.deletedCount === 0) {
+            res.status(404).json({ message: 'subscriber not found'});
+        } else {
+            res.status(200).json({ message: 'subscriber deleted'});
+        }
+    }catch (err) {
+        res.status(500).json({ error: err.message});
+    }
+}
+
+
+
+
 module.exports = {
     getAllSubscribers,
     getSubscriberById,
     createSubscriber,
+    updateSubscriber,
+    deleteSubscriber
 }

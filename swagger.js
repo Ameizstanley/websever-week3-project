@@ -1,4 +1,5 @@
 const swaggerAutogen = require('swagger-autogen')()
+const utilities = require('./utilities')
 
 const doc = {
     info: {

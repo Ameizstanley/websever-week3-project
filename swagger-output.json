@@ -113,7 +113,7 @@
     "/subscribers/{id}": {
       "get": {
         "tags": [],
-        "description": "",
+        "description": "Get a subscriber by id",
         "produces": [
           "application/json"
         ],
@@ -126,12 +126,81 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
           }
+        }
+      },
+      "put": {
+        "tags": [],
+        "description": "Update a subscriber by id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "email": { "type": "string" },
+                "phone": { "type": "string" },
+                "subscriptionDate": { "type": "string" },
+                "status": { "type": "string" },
+                "plan": { "type": "string" },
+                "country": { "type": "string" },
+                "preferences": {
+                  "type": "object",
+                  "properties": {
+                    "newsletter": { "type": "boolean" },
+                    "notifications": { "type": "boolean" },
+                    "marketing": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Subscriber updated" },
+          "404": { "description": "Subscriber not found" },
+          "500": { "description": "Internal Server Error" }
+        }
+      },
+      "delete": {
+        "tags": [],
+        "description": "Delete a subscriber by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Subscriber deleted" },
+          "404": { "description": "Subscriber not found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     }
