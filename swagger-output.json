@@ -144,6 +144,42 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "subscriptionDate": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
+                },
+                "plan": {
+                  "example": "any"
+                },
+                "country": {
+                  "example": "any"
+                },
+                "preferences": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
