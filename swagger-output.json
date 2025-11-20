@@ -22,6 +22,16 @@
         }
       }
     },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/subscribers/": {
       "get": {
         "tags": [],
@@ -43,66 +53,54 @@
       },
       "post": {
         "tags": [],
-        "description": "Create a new subscriber",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
-            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "firstName": {
-                  "type": "string"
+                  "example": "any"
                 },
                 "lastName": {
-                  "type": "string"
+                  "example": "any"
                 },
                 "email": {
-                  "type": "string"
+                  "example": "any"
                 },
                 "phone": {
-                  "type": "string"
+                  "example": "any"
                 },
                 "subscriptionDate": {
-                  "type": "string"
+                  "example": "any"
                 },
                 "status": {
-                  "type": "string"
+                  "example": "any"
                 },
                 "plan": {
-                  "type": "string"
+                  "example": "any"
                 },
                 "country": {
-                  "type": "string"
+                  "example": "any"
                 },
                 "preferences": {
-                  "type": "object",
-                  "properties": {
-                    "newsletter": {
-                      "type": "boolean"
-                    },
-                    "notifications": {
-                      "type": "boolean"
-                    },
-                    "marketing": {
-                      "type": "boolean"
-                    }
-                  }
+                  "example": "any"
                 }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Subscriber created"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -113,7 +111,148 @@
     "/subscribers/{id}": {
       "get": {
         "tags": [],
-        "description": "Get a subscriber by id",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customers/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "dateOfBirth": {
+                  "example": "any"
+                },
+                "customerSince": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
+                },
+                "tier": {
+                  "example": "any"
+                },
+                "totalPurchases": {
+                  "example": "any"
+                },
+                "totalSpent": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -138,14 +277,7 @@
         }
       },
       "put": {
-        "tags": [],
-        "description": "Update a subscriber by id",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -156,39 +288,57 @@
           {
             "name": "body",
             "in": "body",
-            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": { "type": "string" },
-                "lastName": { "type": "string" },
-                "email": { "type": "string" },
-                "phone": { "type": "string" },
-                "subscriptionDate": { "type": "string" },
-                "status": { "type": "string" },
-                "plan": { "type": "string" },
-                "country": { "type": "string" },
-                "preferences": {
-                  "type": "object",
-                  "properties": {
-                    "newsletter": { "type": "boolean" },
-                    "notifications": { "type": "boolean" },
-                    "marketing": { "type": "boolean" }
-                  }
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "dateOfBirth": {
+                  "example": "any"
+                },
+                "customerSince": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
+                },
+                "tier": {
+                  "example": "any"
+                },
+                "totalPurchases": {
+                  "example": "any"
+                },
+                "totalSpent": {
+                  "example": "any"
                 }
               }
             }
           }
         ],
         "responses": {
-          "200": { "description": "Subscriber updated" },
-          "404": { "description": "Subscriber not found" },
-          "500": { "description": "Internal Server Error" }
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       },
       "delete": {
-        "tags": [],
-        "description": "Delete a subscriber by id",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -198,9 +348,15 @@
           }
         ],
         "responses": {
-          "200": { "description": "Subscriber deleted" },
-          "404": { "description": "Subscriber not found" },
-          "500": { "description": "Internal Server Error" }
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       }
     }

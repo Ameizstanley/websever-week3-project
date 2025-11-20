@@ -10,4 +10,6 @@ router.get('/', (req, res) => {
 
 router.use('/subscribers', require('./subscriber'));
 
+router.use('/customers', require('./customers'))
+
 module.exports = router;
