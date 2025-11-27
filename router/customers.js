@@ -5,6 +5,8 @@ const router = express.Router();
 const cuscontroller = require('../controller/cuscontroller')
 const cusValidation = require('../utilities/cusValidate')
 
+const { isAuthenticated } = require('../utilities/authenticate');
+
 
 router.get('/',
     async (req, res) => {
@@ -28,6 +30,7 @@ router.get('/:id',
     });
 
 router.post('/',
+    isAuthenticated,
     cusValidation.createCustomerRules(),
     cusValidation.checkCreateCustomer,
     async (req, res) => {
@@ -39,6 +42,7 @@ router.post('/',
     });
 
 router.put('/:id',
+    isAuthenticated,
     cusValidation.updateCustomerRules(),
     cusValidation.checkUpdateCustomer,
     async (req, res) => {
@@ -50,6 +54,7 @@ router.put('/:id',
     });
 
 router.delete('/:id',
+    isAuthenticated,
     cusValidation.customerIdRules(),
     cusValidation.checkCustomerId,
     async (req, res) => {

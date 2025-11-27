@@ -3,7 +3,8 @@ const router = express.Router();
 
 const subcontroller = require('../controller/subcontroller');
 
-const routerValidation = require('../utilities/index')
+const routerValidation = require('../utilities/index');
+const { isAuthenticated } = require('../utilities/authenticate');
 
 router.get('/',
     async (req, res) => {
@@ -30,6 +31,7 @@ router.get('/:id',
 
 
 router.post('/',
+    isAuthenticated,
     routerValidation.createSubscriberRules(),
     routerValidation.checkCreateSubscriber,
     async (req, res) => {
@@ -42,6 +44,7 @@ router.post('/',
 
 
 router.put('/:id',
+    isAuthenticated,
     routerValidation.updateSubscriberRules(),
     routerValidation.checkUpdateSubscriber,
     async (req, res) => {
@@ -55,6 +58,7 @@ router.put('/:id',
 
 
 router.delete('/:id',
+    isAuthenticated,
     routerValidation.validateIdRules(),
     routerValidation.checkId,
     async (req, res) => {
