@@ -31,7 +31,7 @@ router.get('/:id',
 
 
 router.post('/',
-    isAuthenticated,
+    
     routerValidation.createSubscriberRules(),
     routerValidation.checkCreateSubscriber,
     async (req, res) => {
@@ -44,7 +44,7 @@ router.post('/',
 
 
 router.put('/:id',
-    isAuthenticated,
+    
     routerValidation.updateSubscriberRules(),
     routerValidation.checkUpdateSubscriber,
     async (req, res) => {
